@@ -1,8 +1,8 @@
-import json
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QMenu, QColorDialog, QScrollArea, QPushButton, QLineEdit, QDialog, QFileDialog
-from PySide6.QtGui import QFont, QFontDatabase, QAction, QCursor
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QMenu, QColorDialog, QScrollArea, QPushButton, QLineEdit, QDialog, QFileDialog, QSystemTrayIcon
+from PySide6.QtGui import QFont, QFontDatabase, QAction, QCursor, QIcon
 from PySide6.QtCore import QTimer, QTime, Qt, QPoint
-import sys
+import json, sys, platform
+
 
 class FontSelector(QDialog):
     def __init__(self, parent, fonts, font_change_callback):
@@ -66,6 +66,7 @@ class FontSelector(QDialog):
 
     def change_font(self, font_name):
         self.font_change_callback(font_name)
+        window.save_styles(False)
         self.accept()  # Close the dialog when a font is selected
 
 class TimeWindow(QWidget):
@@ -74,7 +75,7 @@ class TimeWindow(QWidget):
         super().__init__()
 
         # Set up the window
-        self.setWindowTitle("Time Window")
+        self.setWindowTitle("Screensaver")
         self.resize(400, 300)
 
         # Create and configure the time label
@@ -85,6 +86,8 @@ class TimeWindow(QWidget):
         # Set up the layout
         layout = QVBoxLayout()
         layout.addWidget(self.time_label)
+        layout.setContentsMargins(0, 0, 0, 0)  # (left, top, right, bottom)
+        layout.setSpacing(0)  # Space between widgets in the layout
         self.setLayout(layout)
 
         # Set up the timer to update the time label every second
@@ -96,15 +99,52 @@ class TimeWindow(QWidget):
         self.update_time()
 
         # Load styles if they exist
-        self.load_styles()
+        self.load_styles(False)
+
+        # Initialize system tray icon
+        self.tray_icon = QSystemTrayIcon(self)
+        if platform.system() == "Darwin":  # macOS
+            self.tray_icon.setIcon(QIcon("resource/black_icon.png"))  # Path to black icon
+        else:  # Windows or other OS
+            self.tray_icon.setIcon(QIcon("resource/white_icon.png"))  # Path to white icon
+        self.tray_icon.setToolTip("Screensaver Application")
+
+        # Create tray icon menu
+        tray_menu = QMenu(self)
+        show_action = QAction("Show Window", self)
+        quit_action = QAction("Quit", self)
+        show_action.triggered.connect(self.showMaximized)
+        quit_action.triggered.connect(QApplication.instance().quit)
+        tray_menu.addAction(show_action)
+        tray_menu.addAction(quit_action)
+        self.tray_icon.setContextMenu(tray_menu)
+
+        # Show the tray icon
+        self.tray_icon.show()
+
+        # Hide the main window initially
+        self.hide()
 
     def update_time(self):
         current_time = QTime.currentTime().toString("HH:mm:ss")
-        self.time_label.setText(current_time)
+
+        time_array = current_time.split(":")
+
+        hour = int(time_array[0])
+
+        if hour > 12:
+            time_array[0] = str(hour-12)
+            hour = int(hour-12)
+        if hour < 10:
+            time_array[0] = str(hour)
+
+        time_string = ":".join(str(x) for x in time_array)
+
+        self.time_label.setText(time_string)
 
     def contextMenuEvent(self, event):
         menu = QMenu(self)
-        menu.setStyleSheet("background-color: white; color: black;")
+        menu.setStyleSheet("background: white; color: black; border-image: none;")
 
         # Create actions
         change_bg_action = QAction("Change Background Color", self)
@@ -119,7 +159,7 @@ class TimeWindow(QWidget):
         change_font_action.triggered.connect(self.show_font_selector)
         change_bg_image_action.triggered.connect(self.change_background_image)
         change_font_color_action.triggered.connect(self.change_font_color)
-        save_styles_action.triggered.connect(self.save_styles)
+        save_styles_action.triggered.connect(self.save_style_to_file)
         load_styles_action.triggered.connect(self.load_styles)
 
         # Add actions to the menu
@@ -133,15 +173,23 @@ class TimeWindow(QWidget):
         # Execute the menu at the right-click position
         menu.exec(event.globalPos())
 
+    def save_style_to_file(self):
+        self.save_styles(True)
+
+    def load_style_from_file(self):
+        self.load_styles(True)
+
     def change_background_color(self):
         color = QColorDialog.getColor()
         if color.isValid():
-            self.setStyleSheet(f"background-color: {color.name()};")
+            self.setStyleSheet(f"background: {color.name()};")
+            self.save_styles(False)
 
     def change_font_color(self):
         color = QColorDialog.getColor()
         if color.isValid():
             self.time_label.setStyleSheet(f"color: {color.name()};")
+            self.save_styles(False)
 
     def show_font_selector(self):
         fonts = sorted(set(QFontDatabase.families()))
@@ -158,31 +206,46 @@ class TimeWindow(QWidget):
     def change_background_image(self):
         file_name, _ = QFileDialog.getOpenFileName(self, "Select Background Image", "", "Images (*.png *.jpg *.bmp)")
         if file_name:
-            self.setStyleSheet(f"background-image: url({file_name}); background-repeat: no-repeat; background-position: center; background-size: cover;")
+            self.setStyleSheet(f"border-image: url({file_name}) 0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center; margin: 0rem; padding: 0;")
+            self.save_styles(False)
         else:
             self.setStyleSheet("background-color: lightblue;")  # Reset to default if no file is selected
+        
 
-    def save_styles(self):
+    def save_styles(self, picker):
         # Create a dictionary with current styles
         styles = {
             "background-color": self.palette().color(self.backgroundRole()).name(),
             "font-color": self.time_label.palette().color(self.time_label.foregroundRole()).name(),
             "font-family": self.time_label.font().family(),
-            "background-image": self.styleSheet().split("background-image: url(")[-1].split(");")[0] if "background-image" in self.styleSheet() else ""
+            "border-image": self.styleSheet().split("border-image: url(")[-1].split(")")[0] if "border-image" in self.styleSheet() else ""
         }
+
+        print(styles)
+
 
         # Convert dictionary to JSON
         json_string = json.dumps(styles, indent=4)
 
         # Save to file
-        file_name, _ = QFileDialog.getSaveFileName(self, "Save Styles", "", "JSON Files (*.json)")
-        if file_name:
-            with open(file_name, 'w') as file:
-                file.write(json_string)
+        if picker:
+            file_name, _ = QFileDialog.getSaveFileName(self, "Save Styles", "", "JSON Files (*.json)")
+            if file_name:
+                with open(file_name, 'w') as file:
+                    file.write(json_string)
+        else:
+            file_name = "save.json"
+            if file_name:
+                with open(file_name, 'w') as file:
+                    file.write(json_string)
 
-    def load_styles(self):
+    def load_styles(self, picker):
         # Load JSON file
-        file_name, _ = QFileDialog.getOpenFileName(self, "Load Styles", "", "JSON Files (*.json)")
+        if picker:
+            file_name, _ = QFileDialog.getOpenFileName(self, "Load Styles", "", "JSON Files (*.json)")
+        else:
+            file_name = "save.json"
+        
         if file_name:
             with open(file_name, 'r') as file:
                 json_string = file.read()
@@ -197,8 +260,8 @@ class TimeWindow(QWidget):
         stylesheet_parts = []
         if "background-color" in styles:
             stylesheet_parts.append(f"background-color: {styles['background-color']};")
-        if "background-image" in styles and styles["background-image"]:
-            stylesheet_parts.append(f"background-image: url({styles['background-image']}); background-repeat: no-repeat; background-position: center; background-size: cover;")
+        if "border-image" in styles and styles["border-image"]:
+            stylesheet_parts.append(f"border-image: url({styles['border-image']}) 0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center;")
         
         stylesheet = " ".join(stylesheet_parts)
         self.setStyleSheet(stylesheet)
@@ -219,5 +282,4 @@ class TimeWindow(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = TimeWindow()
-    window.show()
     sys.exit(app.exec())

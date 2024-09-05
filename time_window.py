@@ -3,6 +3,7 @@ from PySide6.QtGui import QFont, QIcon, QAction, QFontDatabase, QCursor
 from PySide6.QtCore import Qt, QTime, QTimer
 
 from font_selector import *
+from font_size_slider import *
 import platform, json, sys
 
 class TimeWindow(QWidget):
@@ -83,17 +84,19 @@ class TimeWindow(QWidget):
 
         # Create actions
         change_bg_action = QAction("Change Background Color", self)
-        change_font_action = QAction("Change Font", self)
-        change_bg_image_action = QAction("Change Background Image", self)
         change_font_color_action = QAction("Change Font Color", self)
+        change_font_action = QAction("Change Font", self)
+        change_font_size_action = QAction("Change Font Size", self)
+        change_bg_image_action = QAction("Change Background Image", self)
         save_styles_action = QAction("Save Styles", self)
         load_styles_action = QAction("Load Styles", self)
 
         # Connect actions to slots
         change_bg_action.triggered.connect(self.change_background_color)
-        change_font_action.triggered.connect(self.show_font_selector)
-        change_bg_image_action.triggered.connect(self.change_background_image)
         change_font_color_action.triggered.connect(self.change_font_color)
+        change_font_action.triggered.connect(self.show_font_selector)
+        change_font_size_action.triggered.connect(self.show_font_size_slider)
+        change_bg_image_action.triggered.connect(self.change_background_image)
         save_styles_action.triggered.connect(self.save_style_to_file)
         load_styles_action.triggered.connect(self.load_styles)
 
@@ -101,6 +104,7 @@ class TimeWindow(QWidget):
         menu.addAction(change_bg_action)
         menu.addAction(change_font_color_action)
         menu.addAction(change_font_action)
+        menu.addAction(change_font_size_action)
         menu.addAction(change_bg_image_action)
         menu.addAction(save_styles_action)
         menu.addAction(load_styles_action)
@@ -134,9 +138,19 @@ class TimeWindow(QWidget):
         cursor_position = QCursor.pos()
         font_selector.setGeometry(cursor_position.x(), cursor_position.y(), font_selector.width(), font_selector.height())
         
-        font_selector.setStyleSheet("background: #1e1e1e;")
-        font_selector.search_bar.setStyleSheet("background: #1e1e1e;")
+        font_selector.setStyleSheet("background: #1e1e1e; border-image: none;")
+        font_selector.search_bar.setStyleSheet("background: #1e1e1e; border-image: none;")
         font_selector.exec()  # Show the font selector as a modal dialog
+
+    def show_font_size_slider(self):
+        font_size = 100
+        slider = FontSizeSlider(self)
+
+        cursor_position = QCursor.pos()
+        slider.setGeometry(cursor_position.x(), cursor_position.y(), slider.width(), slider.height())
+
+        slider.setStyleSheet("background: 1e1e1e;")
+        slider.exec()
 
     def change_background_image(self):
         file_name, _ = QFileDialog.getOpenFileName(self, "Select Background Image", "", "Images (*.png *.jpg *.bmp)")
@@ -213,3 +227,10 @@ class TimeWindow(QWidget):
         current_font = self.time_label.font()
         new_font = QFont(font_name, current_font.pointSize())
         self.time_label.setFont(new_font)
+        self.save_styles(False)
+    
+    def change_font_size(self, font_size):
+        current_font = self.time_label.font()
+        new_font = QFont(current_font.family(), font_size)
+        self.time_label.setFont(new_font)
+        self.save_styles(False)

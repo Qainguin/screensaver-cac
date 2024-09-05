@@ -38,9 +38,7 @@ class FontSelector(QDialog):
         self.font_list.clear()
 
         # Add fonts to the list
-        for font_name in self.filtered_fonts:
-            item = QListWidgetItem(font_name)
-            self.font_list.addItem(item)
+        self.font_list.addItems(self.filtered_fonts)
 
     def filter_fonts(self):
         search_term = self.search_bar.text().lower()

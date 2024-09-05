@@ -101,11 +101,14 @@ class TimeWindow(QWidget):
         load_styles_action.triggered.connect(self.load_styles)
 
         # Add actions to the menu
+        menu.addSection("Background")
         menu.addAction(change_bg_action)
+        menu.addAction(change_bg_image_action)
+        menu.addSection("Text")
         menu.addAction(change_font_color_action)
         menu.addAction(change_font_action)
         menu.addAction(change_font_size_action)
-        menu.addAction(change_bg_image_action)
+        menu.addSection("Data")
         menu.addAction(save_styles_action)
         menu.addAction(load_styles_action)
 

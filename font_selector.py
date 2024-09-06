@@ -8,21 +8,21 @@ class FontSelector(QDialog):
         self.font_change_callback = font_change_callback
         self.setWindowTitle("Select Font")
         self.setGeometry(100, 100, 300, 400)  # Ensure the window is visible with appropriate size
-        self.setStyleSheet("background: #1e1e1e;")
+        self.setStyleSheet("background: #1e1e1e; color: white;")
 
         # Set up layout
         layout = QVBoxLayout(self)
 
         # Search bar
         self.search_bar = QLineEdit(self)
-        self.search_bar.setStyleSheet("")
+        self.search_bar.setStyleSheet("color: white;")
         self.search_bar.setPlaceholderText("Search fonts...")
         self.search_bar.textChanged.connect(self.filter_fonts)
         layout.addWidget(self.search_bar)
 
         # Font list
         self.font_list = QListWidget(self)
-        self.font_list.setStyleSheet("")
+        self.font_list.setStyleSheet("color: white;")
         self.font_list.itemClicked.connect(self.change_font)
         layout.addWidget(self.font_list)
 

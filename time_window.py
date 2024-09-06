@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QSystemTrayIcon, QMenu, QApplication, QColorDialog, QFileDialog
-from PySide6.QtGui import QFont, QIcon, QAction, QFontDatabase, QCursor
+from PySide6.QtGui import QDragEnterEvent, QDropEvent, QFont, QIcon, QAction, QFontDatabase, QCursor
 from PySide6.QtCore import Qt, QTime, QTimer
 
 from font_selector import *
@@ -53,13 +53,29 @@ class TimeWindow(QWidget):
         quit_action.triggered.connect(QApplication.instance().quit)
         tray_menu.addAction(show_action)
         tray_menu.addAction(quit_action)
+        tray_menu.setStyleSheet("background: #1e1e1e; color: white; border-image: none;")
         self.tray_icon.setContextMenu(tray_menu)
 
         # Show the tray icon
         self.tray_icon.show()
 
+        # Allow drag & drop
+        self.setAcceptDrops(True)
+
         # Hide the main window initially
         self.hide()
+
+    def dragEnterEvent(self, event: QDragEnterEvent) -> None:
+        if event.mimeData().hasUrls():
+            event.acceptProposedAction()
+    
+    def dropEvent(self, event: QDropEvent) -> None:
+        if event.mimeData().hasUrls():
+            urls = event.mimeData().urls()
+            for url in urls:
+                filepath = url.toLocalFile()
+                print("Dropped file: ", filepath)
+                self.change_background_image(filepath)
 
     def update_time(self):
         current_time = QTime.currentTime().toString("HH:mm:ss")
@@ -80,7 +96,7 @@ class TimeWindow(QWidget):
 
     def contextMenuEvent(self, event):
         menu = QMenu(self)
-        menu.setStyleSheet("background: white; color: black; border-image: none;")
+        menu.setStyleSheet("background: #1e1e1e; color: white; border-image: none;")
 
         # Create actions
         change_bg_action = QAction("Change Background Color", self)
@@ -141,8 +157,8 @@ class TimeWindow(QWidget):
         cursor_position = QCursor.pos()
         font_selector.setGeometry(cursor_position.x(), cursor_position.y(), font_selector.width(), font_selector.height())
         
-        font_selector.setStyleSheet("background: #1e1e1e; border-image: none;")
-        font_selector.search_bar.setStyleSheet("background: #1e1e1e; border-image: none;")
+        font_selector.setStyleSheet("background: #1e1e1e; border-image: none; color: white;")
+        font_selector.search_bar.setStyleSheet("background: #1e1e1e; border-image: none; color: white;")
         font_selector.exec()  # Show the font selector as a modal dialog
 
     def show_font_size_slider(self):
@@ -155,8 +171,12 @@ class TimeWindow(QWidget):
         slider.setStyleSheet("background: 1e1e1e;")
         slider.exec()
 
-    def change_background_image(self):
-        file_name, _ = QFileDialog.getOpenFileName(self, "Select Background Image", "", "Images (*.png *.jpg *.bmp)")
+    def change_background_image(self, path: str = ""):
+        if path == "":
+            file_name, _ = QFileDialog.getOpenFileName(self, "Select Background Image", "", "Images (*.png *.jpg *.bmp)")
+        else:
+            file_name = path
+
         if file_name:
             self.setStyleSheet(f"border-image: url({file_name}) 0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center; margin: 0rem; padding: 0;")
             self.save_styles(False)

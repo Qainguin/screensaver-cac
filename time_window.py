@@ -168,7 +168,7 @@ class TimeWindow(QWidget):
         cursor_position = QCursor.pos()
         slider.setGeometry(cursor_position.x(), cursor_position.y(), slider.width(), slider.height())
 
-        slider.setStyleSheet("background: 1e1e1e;")
+        slider.setStyleSheet("background: 1e1e1e; border-image: none;")
         slider.exec()
 
     def change_background_image(self, path: str = ""):

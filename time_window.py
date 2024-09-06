@@ -112,7 +112,7 @@ class TimeWindow(QWidget):
         change_font_color_action.triggered.connect(self.change_font_color)
         change_font_action.triggered.connect(self.show_font_selector)
         change_font_size_action.triggered.connect(self.show_font_size_slider)
-        change_bg_image_action.triggered.connect(self.change_background_image)
+        change_bg_image_action.triggered.connect(lambda: self.change_background_image(""))
         save_styles_action.triggered.connect(self.save_style_to_file)
         load_styles_action.triggered.connect(self.load_styles)
 

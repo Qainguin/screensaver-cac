@@ -23,11 +23,6 @@ def spotify_authentication(user: str):
 
     print("Authenticated user!")
 
-def play_gummy():
-    if token:
-        sp = spotipy.Spotify(auth=token)
-        sp.start_playback(uris=["spotify:track:6nFYXpBgrNcZjbtNEuc6yR"], device_id=0)
-
 def read_liked_songs():
     if token:
         sp = spotipy.Spotify(auth=token)
@@ -37,6 +32,3 @@ def read_liked_songs():
             print(track['name'] + ' - ' + track['artists'][0]['name'] + ' - ' + track['uri'])
     else:
         print("Can't get token for", username)
-
-spotify_authentication("Qainguin")
-play_gummy()

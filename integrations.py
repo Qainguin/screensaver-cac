@@ -9,7 +9,7 @@ class Integrations(QDialog):
 
         self.setWindowTitle("Integrations")
         self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size
-        self.setStyleSheet("border-image: none; background: #1e1e1e;")
+        self.setStyleSheet("border-image: none; background: #1e1e1e; color: white;")
 
         spotify_widget = QWidget(self)
 

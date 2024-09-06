@@ -1,22 +1,32 @@
+from dotenv import load_dotenv
+
 import sys
 import spotipy
 import spotipy.util as util
 import random
-import keys
+import os
 
 token = ""
 username = ""
+
+load_dotenv()
 
 def spotify_authentication(user: str):
     global token
     global username
 
     if user != "":
+        print("Username:", user)
         username = user
         scope = 'user-library-read streaming'
-        token = util.prompt_for_user_token(username, scope)
+        token = util.prompt_for_user_token(username, scope, os.getenv("SPOTIPY_CLIENT_ID"), os.getenv("SPOTIPY_CLIENT_SECRET"), os.getenv("SPOTIPY_REDIRECT_URI"))
 
     print("Authenticated user!")
+
+def play_gummy():
+    if token:
+        sp = spotipy.Spotify(auth=token)
+        sp.start_playback(uris=["spotify:track:6nFYXpBgrNcZjbtNEuc6yR"], device_id=0)
 
 def read_liked_songs():
     if token:
@@ -27,3 +37,6 @@ def read_liked_songs():
             print(track['name'] + ' - ' + track['artists'][0]['name'] + ' - ' + track['uri'])
     else:
         print("Can't get token for", username)
+
+spotify_authentication("Qainguin")
+play_gummy()

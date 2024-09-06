@@ -100,19 +100,19 @@ class TimeWindow(QWidget):
 
         # Create actions
         change_bg_action = QAction("Change Background Color", self)
+        change_bg_image_action = QAction("Change Background Image", self)
         change_font_color_action = QAction("Change Font Color", self)
         change_font_action = QAction("Change Font", self)
         change_font_size_action = QAction("Change Font Size", self)
-        change_bg_image_action = QAction("Change Background Image", self)
         save_styles_action = QAction("Save Styles", self)
         load_styles_action = QAction("Load Styles", self)
 
         # Connect actions to slots
         change_bg_action.triggered.connect(self.change_background_color)
+        change_bg_image_action.triggered.connect(lambda: self.change_background_image(""))
         change_font_color_action.triggered.connect(self.change_font_color)
         change_font_action.triggered.connect(self.show_font_selector)
         change_font_size_action.triggered.connect(self.show_font_size_slider)
-        change_bg_image_action.triggered.connect(lambda: self.change_background_image(""))
         save_styles_action.triggered.connect(self.save_style_to_file)
         load_styles_action.triggered.connect(self.load_styles)
 

@@ -2,6 +2,7 @@ import sys
 import spotipy
 import spotipy.util as util
 import random
+from keys import *
 
 token = ""
 username = ""
@@ -13,7 +14,7 @@ def spotify_authentication(user: str):
     if user != "":
         username = user
         scope = 'user-library-read streaming'
-        token = util.prompt_for_user_token(username, scope, client_id="d213ec9c944b45faa75b9eab49922be8", client_secret="16cc08ed83ca4139b28863f0a48ec725", redirect_uri="http://localhost:8080/")
+        token = util.prompt_for_user_token(username, scope, client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIENT_SECRET, redirect_uri="http://localhost:8080/")
 
     print("Authenticated user!")
 

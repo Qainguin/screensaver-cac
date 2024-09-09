@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QVBoxLayout, QWidget, QPushButton, QDialog, QLabel, QLineEdit, QHBoxLayout, QTableWidget, QTableWidgetItem
 from PySide6.QtCore import Qt
 
-from spotify_integration import *
+from .spotify_integration import *
 
 class Integrations(QDialog):
     def __init__(self, parent):

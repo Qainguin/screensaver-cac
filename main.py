@@ -1,4 +1,5 @@
-from time_window import *
+from PySide6.QtWidgets import QApplication
+from src.time_window import *
 import sys
 
 if __name__ == "__main__":

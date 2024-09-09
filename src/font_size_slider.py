@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QDialog, QSlider, QVBoxLayout
 from PySide6.QtCore import Qt
 
 class FontSizeSlider(QDialog):
-    def __init__(self, parent):
+    def __init__(self, parent, value):
         super().__init__(parent)
 
         self.setWindowTitle("Choose Font Size")
@@ -14,7 +14,7 @@ class FontSizeSlider(QDialog):
         self.slider.setMaximum(288)
         self.slider.setTickInterval(8)
         self.slider.setTickPosition(QSlider.TicksBelow)
-        self.slider.setValue(72)
+        self.slider.setValue(value)
         self.slider.setTracking(True)
         self.slider.valueChanged.connect(parent.change_font_size)
 

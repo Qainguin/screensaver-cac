@@ -2,9 +2,11 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QSystemTrayIcon, QMe
 from PySide6.QtGui import QDragEnterEvent, QDropEvent, QFont, QIcon, QAction, QFontDatabase, QCursor
 from PySide6.QtCore import Qt, QTime, QTimer
 
-from font_selector import *
-from font_size_slider import *
-from integrations import *
+from src.font_selector import *
+from src.font_size_slider import *
+from src.integrations_window import *
+from src.position_changer import *
+
 import platform, json, sys, spotipy
 
 class TimeWindow(QWidget):
@@ -17,7 +19,7 @@ class TimeWindow(QWidget):
 
         # Create and configure the time label
         self.time_label = QLabel()
-        self.time_label.setAlignment(Qt.AlignCenter)
+        self.time_label.setAlignment(Qt.AlignLeft | Qt.AlignTop)
         self.time_label.setFont(QFont("Bahnschrift SemiLight Condensed", 100))
 
         # Set up the layout
@@ -107,6 +109,7 @@ class TimeWindow(QWidget):
         change_font_color_action = QAction("Change Font Color", self)
         change_font_action = QAction("Change Font", self)
         change_font_size_action = QAction("Change Font Size", self)
+        show_label_position_changer_action = QAction("Change Label Position", self)
         save_styles_action = QAction("Save Styles", self)
         load_styles_action = QAction("Load Styles", self)
         integrations_action = QAction("Integrations", self)
@@ -117,6 +120,7 @@ class TimeWindow(QWidget):
         change_font_color_action.triggered.connect(self.change_font_color)
         change_font_action.triggered.connect(self.show_font_selector)
         change_font_size_action.triggered.connect(self.show_font_size_slider)
+        show_label_position_changer_action.triggered.connect(self.show_label_position_changer)
         save_styles_action.triggered.connect(self.save_style_to_file)
         load_styles_action.triggered.connect(self.load_styles)
         integrations_action.triggered.connect(self.show_integrations)
@@ -129,6 +133,7 @@ class TimeWindow(QWidget):
         menu.addAction(change_font_color_action)
         menu.addAction(change_font_action)
         menu.addAction(change_font_size_action)
+        menu.addAction(show_label_position_changer_action)
         menu.addSection("Data")
         menu.addAction(save_styles_action)
         menu.addAction(load_styles_action)
@@ -201,11 +206,21 @@ class TimeWindow(QWidget):
             self.time_label.setStyleSheet(f"color: {color.name()};")
             self.save_styles(False)
 
+    def show_label_position_changer(self):
+        changer = PositionChanger(self)
+
+        app = QApplication.instance()
+        size = app.primaryScreen().size()
+        changer.setGeometry((size.width()/2)-150, (size.height()/2)-150, 300, 300)
+
+        changer.exec()
+
     def show_integrations(self):
         integ = Integrations(self)
 
-        cursor_position = QCursor.pos()
-        integ.setGeometry(cursor_position.x(), cursor_position.y(), 400, 100)
+        app = QApplication.instance()
+        size = app.primaryScreen().size()
+        integ.setGeometry((size.width()/2)-200, (size.height()/2)-50, 400, 100)
 
         integ.exec()
 
@@ -214,20 +229,20 @@ class TimeWindow(QWidget):
         fonts = sorted(set(QFontDatabase.families()))
         font_selector = FontSelector(self, fonts, self.change_font)
 
-        # Position the font selector dialog at the cursor position
-        cursor_position = QCursor.pos()
-        font_selector.setGeometry(cursor_position.x(), cursor_position.y(), font_selector.width(), font_selector.height())
+        app = QApplication.instance()
+        size = app.primaryScreen().size()
+        font_selector.setGeometry((size.width()/2)-(font_selector.width()/2), (size.height()/2)-(font_selector.height()/2), font_selector.width(), font_selector.height())
         
         font_selector.setStyleSheet("background: #1e1e1e; border-image: none; color: white;")
         font_selector.search_bar.setStyleSheet("background: #1e1e1e; border-image: none; color: white;")
         font_selector.exec()  # Show the font selector as a modal dialog
 
     def show_font_size_slider(self):
-        font_size = 100
-        slider = FontSizeSlider(self)
+        slider = FontSizeSlider(self, self.time_label.font().pointSize())
 
-        cursor_position = QCursor.pos()
-        slider.setGeometry(cursor_position.x(), cursor_position.y(), slider.width(), slider.height())
+        app = QApplication.instance()
+        size = app.primaryScreen().size()
+        slider.setGeometry((size.width()/2)-(slider.width()/2), (size.height()/2)-(slider.height()/2), slider.width(), slider.height())
 
         slider.setStyleSheet("background: 1e1e1e; border-image: none;")
         slider.exec()
@@ -251,6 +266,8 @@ class TimeWindow(QWidget):
             "background-color": self.palette().color(self.backgroundRole()).name(),
             "font-color": self.time_label.palette().color(self.time_label.foregroundRole()).name(),
             "font-family": self.time_label.font().family(),
+            "font-size": self.time_label.font().pointSize(),
+            "label-position": self.time_label.alignment(),
             "border-image": self.styleSheet().split("border-image: url(")[-1].split(")")[0] if "border-image" in self.styleSheet() else ""
         }
 
@@ -295,17 +312,42 @@ class TimeWindow(QWidget):
             stylesheet_parts.append(f"background-color: {styles['background-color']};")
         if "border-image" in styles and styles["border-image"]:
             stylesheet_parts.append(f"border-image: url({styles['border-image']}) 0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center;")
-        
+
         stylesheet = " ".join(stylesheet_parts)
         self.setStyleSheet(stylesheet)
         
         # Apply font settings separately
         if "font-color" in styles:
             self.time_label.setStyleSheet(f"color: {styles['font-color']};")
+        if "font-size" in styles:
+            new_font = QFont(self.time_label.font().family(), styles['font-size'])
+            self.time_label.setFont(new_font)
         if "font-family" in styles:
             current_size = self.time_label.font().pointSize()
             new_font = QFont(styles['font-family'], current_size)
             self.time_label.setFont(new_font)
+        if "label-position" in styles:
+            new_alignment = styles['label-position']
+            match new_alignment:
+                case 33:
+                    self.time_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)
+                case 36:
+                    self.time_label.setAlignment(Qt.AlignTop | Qt.AlignHCenter)
+                case 34:
+                    self.time_label.setAlignment(Qt.AlignTop | Qt.AlignRight)
+                case 129:
+                    self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignLeft)
+                case 132:
+                    self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignHCenter)
+                case 130:
+                    self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                case 65:
+                    self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignLeft)
+                case 68:
+                    self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
+                case 66:
+                    self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignRight)
+            
 
     def change_font(self, font_name):
         current_font = self.time_label.font()
@@ -317,4 +359,26 @@ class TimeWindow(QWidget):
         current_font = self.time_label.font()
         new_font = QFont(current_font.family(), font_size)
         self.time_label.setFont(new_font)
+        self.save_styles(False)
+    
+    def change_label_position(self, position: int):
+        match position:
+            case 0:
+                self.time_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)
+            case 1:
+                self.time_label.setAlignment(Qt.AlignTop | Qt.AlignHCenter)
+            case 2:
+                self.time_label.setAlignment(Qt.AlignTop | Qt.AlignRight)
+            case 3:
+                self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignLeft)
+            case 4:
+                self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignHCenter)
+            case 5:
+                self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignRight)
+            case 6:
+                self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignLeft)
+            case 7:
+                self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
+            case 8:
+                self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignRight)
         self.save_styles(False)

@@ -1,0 +1,553 @@
+[
+    {
+        "label": "QDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLineEdit",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QListWidget",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QListWidgetItem",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QScrollArea",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QSlider",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLineEdit",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QHBoxLayout",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QTableWidget",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QTableWidgetItem",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QGridLayout",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QSystemTrayIcon",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMenu",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QApplication",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QColorDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QFileDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMenuBar",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QApplication",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QFont",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QDragEnterEvent",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QDropEvent",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QFont",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QIcon",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QAction",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QFontDatabase",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QCursor",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QTime",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QTimer",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "spotipy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "spotipy",
+        "description": "spotipy",
+        "detail": "spotipy",
+        "documentation": {}
+    },
+    {
+        "label": "spotipy.util",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "spotipy.util",
+        "description": "spotipy.util",
+        "detail": "spotipy.util",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "src.font_selector",
+        "description": "src.font_selector",
+        "isExtraImport": true,
+        "detail": "src.font_selector",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "src.font_size_slider",
+        "description": "src.font_size_slider",
+        "isExtraImport": true,
+        "detail": "src.font_size_slider",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "src.integrations_window",
+        "description": "src.integrations_window",
+        "isExtraImport": true,
+        "detail": "src.integrations_window",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "src.position_changer",
+        "description": "src.position_changer",
+        "isExtraImport": true,
+        "detail": "src.position_changer",
+        "documentation": {}
+    },
+    {
+        "label": "platform,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "platform.",
+        "description": "platform.",
+        "detail": "platform.",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "src.time_window",
+        "description": "src.time_window",
+        "isExtraImport": true,
+        "detail": "src.time_window",
+        "documentation": {}
+    },
+    {
+        "label": "FontSelector",
+        "kind": 6,
+        "importPath": "src.font_selector",
+        "description": "src.font_selector",
+        "peekOfCode": "class FontSelector(QDialog):\n    def __init__(self, parent, fonts, font_change_callback):\n        super().__init__(parent)\n        self.font_change_callback = font_change_callback\n        self.setWindowTitle(\"Select Font\")\n        self.setGeometry(100, 100, 300, 400)  # Ensure the window is visible with appropriate size\n        self.setStyleSheet(\"background: #1e1e1e; color: white;\")\n        # Set up layout\n        layout = QVBoxLayout(self)\n        # Search bar",
+        "detail": "src.font_selector",
+        "documentation": {}
+    },
+    {
+        "label": "FontSizeSlider",
+        "kind": 6,
+        "importPath": "src.font_size_slider",
+        "description": "src.font_size_slider",
+        "peekOfCode": "class FontSizeSlider(QDialog):\n    def __init__(self, parent, value):\n        super().__init__(parent)\n        self.setWindowTitle(\"Choose Font Size\")\n        self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size\n        self.setStyleSheet(\"border-image: none; background: #1e1e1e;\")\n        self.slider = QSlider(Qt.Horizontal, self)\n        self.slider.setMinimum(72)\n        self.slider.setMaximum(288)\n        self.slider.setTickInterval(8)",
+        "detail": "src.font_size_slider",
+        "documentation": {}
+    },
+    {
+        "label": "Integrations",
+        "kind": 6,
+        "importPath": "src.integrations_window",
+        "description": "src.integrations_window",
+        "peekOfCode": "class Integrations(QDialog):\n    def __init__(self, parent):\n        super().__init__(parent)\n        self.setWindowTitle(\"Integrations\")\n        self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size\n        self.setStyleSheet(\"border-image: none; background: #1e1e1e; color: white;\")\n        spotify_widget = QWidget(self)\n        spot_layout = QHBoxLayout()\n        spot_layout.addStretch()\n        spotify_label = QLabel(\"Spotify\")",
+        "detail": "src.integrations_window",
+        "documentation": {}
+    },
+    {
+        "label": "PositionChanger",
+        "kind": 6,
+        "importPath": "src.position_changer",
+        "description": "src.position_changer",
+        "peekOfCode": "class PositionChanger(QDialog):\n    def __init__(self, parent):\n        super().__init__(parent)\n        self.setWindowTitle(\"Change Label Position\")\n        self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size\n        self.setStyleSheet(\"border-image: none; background: #1e1e1e;\")\n        layout = QGridLayout()\n        self.topLeftButton = QPushButton(\"Top-Left\")\n        self.topLeftButton.setMinimumHeight(100)\n        self.topLeftButton.setMinimumWidth(100)",
+        "detail": "src.position_changer",
+        "documentation": {}
+    },
+    {
+        "label": "spotify_authentication",
+        "kind": 2,
+        "importPath": "src.spotify_integration",
+        "description": "src.spotify_integration",
+        "peekOfCode": "def spotify_authentication(user: str):\n    global token\n    global username\n    if user != \"\":\n        print(\"Username:\", user)\n        username = user\n        scope = 'user-library-read streaming'\n        token = util.prompt_for_user_token(username, scope, os.getenv(\"SPOTIPY_CLIENT_ID\"), os.getenv(\"SPOTIPY_CLIENT_SECRET\"), os.getenv(\"SPOTIPY_REDIRECT_URI\"))\n    print(\"Authenticated user!\")\ndef read_liked_songs():",
+        "detail": "src.spotify_integration",
+        "documentation": {}
+    },
+    {
+        "label": "read_liked_songs",
+        "kind": 2,
+        "importPath": "src.spotify_integration",
+        "description": "src.spotify_integration",
+        "peekOfCode": "def read_liked_songs():\n    if token:\n        sp = spotipy.Spotify(auth=token)\n        results = sp.current_user_saved_tracks(50, 0)\n        for item in results['items']:\n            track = item['track']\n            print(track['name'] + ' - ' + track['artists'][0]['name'] + ' - ' + track['uri'])\n    else:\n        print(\"Can't get token for\", username)",
+        "detail": "src.spotify_integration",
+        "documentation": {}
+    },
+    {
+        "label": "token",
+        "kind": 5,
+        "importPath": "src.spotify_integration",
+        "description": "src.spotify_integration",
+        "peekOfCode": "token = \"\"\nusername = \"\"\nload_dotenv()\ndef spotify_authentication(user: str):\n    global token\n    global username\n    if user != \"\":\n        print(\"Username:\", user)\n        username = user\n        scope = 'user-library-read streaming'",
+        "detail": "src.spotify_integration",
+        "documentation": {}
+    },
+    {
+        "label": "username",
+        "kind": 5,
+        "importPath": "src.spotify_integration",
+        "description": "src.spotify_integration",
+        "peekOfCode": "username = \"\"\nload_dotenv()\ndef spotify_authentication(user: str):\n    global token\n    global username\n    if user != \"\":\n        print(\"Username:\", user)\n        username = user\n        scope = 'user-library-read streaming'\n        token = util.prompt_for_user_token(username, scope, os.getenv(\"SPOTIPY_CLIENT_ID\"), os.getenv(\"SPOTIPY_CLIENT_SECRET\"), os.getenv(\"SPOTIPY_REDIRECT_URI\"))",
+        "detail": "src.spotify_integration",
+        "documentation": {}
+    },
+    {
+        "label": "TimeWindow",
+        "kind": 6,
+        "importPath": "src.time_window",
+        "description": "src.time_window",
+        "peekOfCode": "class TimeWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        # Set up the window\n        self.setWindowTitle(\"Screensaver\")\n        self.resize(400, 300)\n        # Create and configure the time label\n        self.time_label = QLabel()\n        self.time_label.setAlignment(Qt.AlignLeft | Qt.AlignTop)\n        self.time_label.setFont(QFont(\"Bahnschrift SemiLight Condensed\", 100))",
+        "detail": "src.time_window",
+        "documentation": {}
+    }
+]

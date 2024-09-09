@@ -1,6 +1,8 @@
 {
     "background-color": "#1e1e1e",
     "font-color": "#a5fbee",
-    "font-family": "Al Tarikh",
+    "font-family": "Marker Felt",
+    "font-size": 82,
+    "label-position": 66,
     "border-image": "C:/Users/traci/Downloads/174335.png"
 }

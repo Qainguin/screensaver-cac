@@ -133,6 +133,7 @@ class TimeWindow(QWidget):
         menu.addAction(change_font_color_action)
         menu.addAction(change_font_action)
         menu.addAction(change_font_size_action)
+        menu.addSection("Label")
         menu.addAction(show_label_position_changer_action)
         menu.addSection("Data")
         menu.addAction(save_styles_action)
@@ -263,12 +264,18 @@ class TimeWindow(QWidget):
     def save_styles(self, picker):
         # Create a dictionary with current styles
         styles = {
-            "background-color": self.palette().color(self.backgroundRole()).name(),
-            "font-color": self.time_label.palette().color(self.time_label.foregroundRole()).name(),
-            "font-family": self.time_label.font().family(),
-            "font-size": self.time_label.font().pointSize(),
-            "label-position": self.time_label.alignment(),
-            "border-image": self.styleSheet().split("border-image: url(")[-1].split(")")[0] if "border-image" in self.styleSheet() else ""
+            "background": {
+                "background-color": self.palette().color(self.backgroundRole()).name(),
+                "border-image": self.styleSheet().split("border-image: url(")[-1].split(")")[0] if "border-image" in self.styleSheet() else ""
+            },
+            "font": {
+                "font-color": self.time_label.palette().color(self.time_label.foregroundRole()).name(),
+                "font-family": self.time_label.font().family(),
+                "font-size": self.time_label.font().pointSize(),
+            },
+            "label": {
+                "label-position": self.time_label.alignment()
+            }
         }
 
         print(styles)
@@ -308,45 +315,48 @@ class TimeWindow(QWidget):
 
         # Construct the stylesheet from the parsed JSON
         stylesheet_parts = []
-        if "background-color" in styles:
-            stylesheet_parts.append(f"background-color: {styles['background-color']};")
-        if "border-image" in styles and styles["border-image"]:
-            stylesheet_parts.append(f"border-image: url({styles['border-image']}) 0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center;")
+        if 'background' in styles:
+            if "background-color" in styles['background']:
+                stylesheet_parts.append(f"background-color: {styles['background']['background-color']};")
+            if "border-image" in styles and styles["border-image"]:
+                stylesheet_parts.append(f"border-image: url({styles['background']['border-image']}) 0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center;")
 
         stylesheet = " ".join(stylesheet_parts)
         self.setStyleSheet(stylesheet)
         
         # Apply font settings separately
-        if "font-color" in styles:
-            self.time_label.setStyleSheet(f"color: {styles['font-color']};")
-        if "font-size" in styles:
-            new_font = QFont(self.time_label.font().family(), styles['font-size'])
-            self.time_label.setFont(new_font)
-        if "font-family" in styles:
-            current_size = self.time_label.font().pointSize()
-            new_font = QFont(styles['font-family'], current_size)
-            self.time_label.setFont(new_font)
-        if "label-position" in styles:
-            new_alignment = styles['label-position']
-            match new_alignment:
-                case 33:
-                    self.time_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)
-                case 36:
-                    self.time_label.setAlignment(Qt.AlignTop | Qt.AlignHCenter)
-                case 34:
-                    self.time_label.setAlignment(Qt.AlignTop | Qt.AlignRight)
-                case 129:
-                    self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignLeft)
-                case 132:
-                    self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignHCenter)
-                case 130:
-                    self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignRight)
-                case 65:
-                    self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignLeft)
-                case 68:
-                    self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
-                case 66:
-                    self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignRight)
+        if "font" in styles:
+            if "font-color" in styles['font']:
+                self.time_label.setStyleSheet(f"color: {styles['font']['font-color']};")
+            if "font-size" in styles['font']:
+                new_font = QFont(self.time_label.font().family(), styles['font']['font-size'])
+                self.time_label.setFont(new_font)
+            if "font-family" in styles['font']:
+                current_size = self.time_label.font().pointSize()
+                new_font = QFont(styles['font']['font-family'], current_size)
+                self.time_label.setFont(new_font)
+        if 'label' in styles:
+            if "label-position" in styles['label']:
+                new_alignment = styles['label']['label-position']
+                match new_alignment:
+                    case 33:
+                        self.time_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)
+                    case 36:
+                        self.time_label.setAlignment(Qt.AlignTop | Qt.AlignHCenter)
+                    case 34:
+                        self.time_label.setAlignment(Qt.AlignTop | Qt.AlignRight)
+                    case 129:
+                        self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignLeft)
+                    case 132:
+                        self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignHCenter)
+                    case 130:
+                        self.time_label.setAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                    case 65:
+                        self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignLeft)
+                    case 68:
+                        self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
+                    case 66:
+                        self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignRight)
             
 
     def change_font(self, font_name):

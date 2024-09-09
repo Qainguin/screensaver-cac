@@ -1,8 +1,14 @@
 {
-    "background-color": "#1e1e1e",
-    "font-color": "#a5fbee",
-    "font-family": "Marker Felt",
-    "font-size": 82,
-    "label-position": 66,
-    "border-image": "C:/Users/traci/Downloads/174335.png"
+    "background": {
+        "background-color": "#bfff00",
+        "border-image": ""
+    },
+    "font": {
+        "font-color": "#ff2b00",
+        "font-family": "Al Nile",
+        "font-size": 239
+    },
+    "label": {
+        "label-position": 132
+    }
 }

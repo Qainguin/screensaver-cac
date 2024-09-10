@@ -257,8 +257,6 @@ class TimeWindow(QWidget):
             }
         }
 
-        print(styles)
-
 
         # Convert dictionary to JSON
         json_string = json.dumps(styles, indent=4)
@@ -302,7 +300,8 @@ class TimeWindow(QWidget):
         self.setStyleSheet(stylesheet)
 
         if "border-image" in styles["background"]:
-            self.change_background_image(styles['background']['border-image'])
+            if styles['background']['border-image'] != "":
+                self.change_background_image(styles['background']['border-image'])
         
         # Apply font settings separately
         if "font" in styles:

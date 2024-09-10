@@ -1,15 +1,15 @@
 {
     "background": {
-        "background-color": "#ffffff",
+        "background-color": "#9b80ff",
         "border-image": ""
     },
     "font": {
-        "font-color": "#66b1ff",
-        "font-family": "Menlo",
-        "font-size": 195
+        "font-color": "#ffffff",
+        "font-family": "Kenney Blocks",
+        "font-size": 100
     },
     "label": {
-        "label-position": 36,
-        "show-seconds": true
+        "label-position": 132,
+        "show-seconds": false
     }
 }

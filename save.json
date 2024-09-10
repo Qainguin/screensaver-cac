@@ -4,11 +4,11 @@
         "border-image": ""
     },
     "font": {
-        "font-color": "#ff2b00",
-        "font-family": "Al Nile",
-        "font-size": 239
+        "font-color": "#101010",
+        "font-family": "Bahnschrift Light Condensed",
+        "font-size": 288
     },
     "label": {
-        "label-position": 132
+        "label-position": 36
     }
 }

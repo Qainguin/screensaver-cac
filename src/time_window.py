@@ -48,8 +48,6 @@ class TimeWindow(QWidget):
             self.tray_icon.setIcon(QIcon("resource/white_icon.png"))  # Path to white icon
         self.tray_icon.setToolTip("Screensaver Application")
 
-        self.create_menu_bar()
-
         # Create tray icon menu
         tray_menu = QMenu(self)
         show_action = QAction("Show Window", self)
@@ -143,51 +141,6 @@ class TimeWindow(QWidget):
 
         # Execute the menu at the right-click position
         menu.exec(event.globalPos())
-
-    def create_menu_bar(self):
-        bar = QMenuBar(self)
-
-        # Create menus
-        file_menu = bar.addMenu(self.tr("&File"))
-        font_menu = bar.addMenu(self.tr("&Font"))
-        bg_menu = bar.addMenu(self.tr("&Background"))
-        misc_menu = bar.addMenu(self.tr("&Misc"))
-
-        # Create actions
-        change_bg_action = QAction("Change Background Color", self)
-        change_bg_image_action = QAction("Change Background Image", self)
-        change_font_color_action = QAction("Change Font Color", self)
-        change_font_action = QAction("Change Font", self)
-        change_font_size_action = QAction("Change Font Size", self)
-        save_styles_action = QAction("Save Styles", self)
-        load_styles_action = QAction("Load Styles", self)
-        integrations_action = QAction("Integrations", self)
-
-        # Connect actions to slots
-        change_bg_action.triggered.connect(self.change_background_color)
-        change_bg_image_action.triggered.connect(lambda: self.change_background_image(""))
-        change_font_color_action.triggered.connect(self.change_font_color)
-        change_font_action.triggered.connect(self.show_font_selector)
-        change_font_size_action.triggered.connect(self.show_font_size_slider)
-        save_styles_action.triggered.connect(self.save_style_to_file)
-        load_styles_action.triggered.connect(self.load_styles)
-        integrations_action.triggered.connect(self.show_integrations)
-
-        # Add actions to the menus
-        file_menu.addAction(save_styles_action)
-        file_menu.addAction(load_styles_action)
-
-        bg_menu.addAction(change_bg_action)
-        bg_menu.addAction(change_bg_image_action)
-        
-        font_menu.addAction(change_font_color_action)
-        font_menu.addAction(change_font_action)
-        font_menu.addAction(change_font_size_action)
-
-        misc_menu.addAction(integrations_action)
-
-        # Set the menu bar
-        bar.setNativeMenuBar(True)
 
     def save_style_to_file(self):
         self.save_styles(True)

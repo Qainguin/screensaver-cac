@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QSystemTrayIcon, QMenu, QApplication, QColorDialog, QFileDialog, QMenuBar
 from PySide6.QtGui import QDragEnterEvent, QDropEvent, QFont, QIcon, QAction, QFontDatabase, QCursor
-from PySide6.QtCore import Qt, QTime, QTimer
+from PySide6.QtCore import Qt, QTime, QTimer, QEasingCurve, QPropertyAnimation
 
 from src.font_selector import *
 from src.font_size_slider import *
@@ -12,6 +12,9 @@ import platform, json, sys, spotipy
 class TimeWindow(QWidget):
     def __init__(self):
         super().__init__()
+
+        self.is_fullscreen = False
+        self.show_seconds = True
 
         # Set up the window
         self.setWindowTitle("Screensaver")
@@ -25,7 +28,7 @@ class TimeWindow(QWidget):
         # Set up the layout
         layout = QVBoxLayout()
         layout.addWidget(self.time_label)
-        layout.setContentsMargins(0, 0, 0, 0)  # (left, top, right, bottom)
+        layout.setContentsMargins(16, 0, 16, 0)  # (left, top, right, bottom)
         layout.setSpacing(0)  # Space between widgets in the layout
         self.setLayout(layout)
 
@@ -81,7 +84,11 @@ class TimeWindow(QWidget):
                 self.change_background_image(filepath)
 
     def update_time(self):
-        current_time = QTime.currentTime().toString("HH:mm:ss")
+        time_format = "HH:mm:ss"
+        if not self.show_seconds:
+            time_format = "HH:mm"
+
+        current_time = QTime.currentTime().toString(time_format)
 
         time_array = current_time.split(":")
 
@@ -97,9 +104,13 @@ class TimeWindow(QWidget):
 
         self.time_label.setText(time_string)
 
+    def keyPressEvent(self, event):
+        if event.key() in {Qt.Key_F11, Qt.Key_Return, Qt.Key_Enter}:
+            self.toggle_fullscreen()
+
     def contextMenuEvent(self, event):
         menu = QMenu(self)
-        menu.setStyleSheet("background: #1e1e1e; color: white; border-image: none;")
+        menu.setStyleSheet("background: #1e1e1e; color: white; border-image: none; padding: 8 0 8 0")
 
         # Create actions
         change_bg_action = QAction("Change Background Color", self)
@@ -108,6 +119,9 @@ class TimeWindow(QWidget):
         change_font_action = QAction("Change Font", self)
         change_font_size_action = QAction("Change Font Size", self)
         show_label_position_changer_action = QAction("Change Label Position", self)
+        show_seconds_toggle_action = QAction("Show Seconds", self)
+        show_seconds_toggle_action.setCheckable(True)
+        show_seconds_toggle_action.setChecked(self.show_seconds)
         save_styles_action = QAction("Save Styles", self)
         load_styles_action = QAction("Load Styles", self)
         integrations_action = QAction("Integrations", self)
@@ -119,6 +133,7 @@ class TimeWindow(QWidget):
         change_font_action.triggered.connect(self.show_font_selector)
         change_font_size_action.triggered.connect(self.show_font_size_slider)
         show_label_position_changer_action.triggered.connect(self.show_label_position_changer)
+        show_seconds_toggle_action.triggered.connect(self.toggle_show_seconds)
         save_styles_action.triggered.connect(self.save_style_to_file)
         load_styles_action.triggered.connect(self.load_styles)
         integrations_action.triggered.connect(self.show_integrations)
@@ -133,6 +148,7 @@ class TimeWindow(QWidget):
         menu.addAction(change_font_size_action)
         menu.addSection("Label")
         menu.addAction(show_label_position_changer_action)
+        menu.addAction(show_seconds_toggle_action)
         menu.addSection("Data")
         menu.addAction(save_styles_action)
         menu.addAction(load_styles_action)
@@ -202,7 +218,7 @@ class TimeWindow(QWidget):
         slider.exec()
 
     def change_background_image(self, path: str = ""):
-        if path == "":
+        if path == "" or path == "\n":
             file_name, _ = QFileDialog.getOpenFileName(self, "Select Background Image", "", "Images (*.png *.jpg *.bmp)")
         else:
             file_name = path
@@ -210,9 +226,18 @@ class TimeWindow(QWidget):
         if file_name:
             self.setStyleSheet(f"border-image: url({file_name}) 0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center; margin: 0rem; padding: 0;")
             self.save_styles(False)
-        else:
-            self.setStyleSheet("background-color: lightblue;")  # Reset to default if no file is selected
         
+    def toggle_fullscreen(self):
+        if self.is_fullscreen:
+            self.showMaximized()  # Exit fullscreen
+        else:
+            self.showFullScreen()  # Enter fullscreen
+        self.is_fullscreen = not self.is_fullscreen  # Toggle the state
+
+    def toggle_show_seconds(self, val: bool):
+        self.show_seconds = not self.show_seconds
+        self.update_time()
+        self.save_styles(False)
 
     def save_styles(self, picker):
         # Create a dictionary with current styles
@@ -227,7 +252,8 @@ class TimeWindow(QWidget):
                 "font-size": self.time_label.font().pointSize(),
             },
             "label": {
-                "label-position": self.time_label.alignment()
+                "label-position": self.time_label.alignment(),
+                "show-seconds": self.show_seconds
             }
         }
 
@@ -271,11 +297,12 @@ class TimeWindow(QWidget):
         if 'background' in styles:
             if "background-color" in styles['background']:
                 stylesheet_parts.append(f"background-color: {styles['background']['background-color']};")
-            if "border-image" in styles and styles["border-image"]:
-                stylesheet_parts.append(f"border-image: url({styles['background']['border-image']}) 0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center;")
 
         stylesheet = " ".join(stylesheet_parts)
         self.setStyleSheet(stylesheet)
+
+        if "border-image" in styles["background"]:
+            self.change_background_image(styles['background']['border-image'])
         
         # Apply font settings separately
         if "font" in styles:
@@ -310,7 +337,9 @@ class TimeWindow(QWidget):
                         self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
                     case 66:
                         self.time_label.setAlignment(Qt.AlignBottom | Qt.AlignRight)
-            
+            if "show-seconds" in styles['label']:
+                self.show_seconds = styles['label']['show-seconds']
+                self.update_time()
 
     def change_font(self, font_name):
         current_font = self.time_label.font()

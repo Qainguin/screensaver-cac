@@ -368,6 +368,22 @@
         "documentation": {}
     },
     {
+        "label": "QEasingCurve",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QPropertyAnimation",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
@@ -555,7 +571,7 @@
         "kind": 6,
         "importPath": "src.time_window",
         "description": "src.time_window",
-        "peekOfCode": "class TimeWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        # Set up the window\n        self.setWindowTitle(\"Screensaver\")\n        self.resize(400, 300)\n        # Create and configure the time label\n        self.time_label = QLabel()\n        self.time_label.setAlignment(Qt.AlignLeft | Qt.AlignTop)\n        self.time_label.setFont(QFont(\"Bahnschrift SemiLight Condensed\", 100))",
+        "peekOfCode": "class TimeWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.is_fullscreen = False\n        self.show_seconds = True\n        # Set up the window\n        self.setWindowTitle(\"Screensaver\")\n        self.resize(400, 300)\n        # Create and configure the time label\n        self.time_label = QLabel()",
         "detail": "src.time_window",
         "documentation": {}
     }

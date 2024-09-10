@@ -6,9 +6,9 @@
     "font": {
         "font-color": "#101010",
         "font-family": "K2D",
-        "font-size": 288
+        "font-size": 92
     },
     "label": {
-        "label-position": 36
+        "label-position": 132
     }
 }

@@ -24,6 +24,7 @@ class Integrations(QDialog):
 
         if 'spotify_username' in integrations_dict:
             spotify_authentication(integrations_dict['spotify_username'])
+            self.spotify_username.setText(integrations_dict['spotify_username'])
 
     def __init__(self, parent):
         super().__init__(parent)

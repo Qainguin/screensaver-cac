@@ -11,7 +11,7 @@ username = ""
 
 load_dotenv()
 
-def spotify_authentication(self, user: str):
+def spotify_authentication(user: str):
     global token
     global username
 

@@ -1,11 +1,11 @@
 {
     "background": {
-        "background-color": "#bfff00",
+        "background-color": "#dcff9d",
         "border-image": ""
     },
     "font": {
         "font-color": "#101010",
-        "font-family": "Bahnschrift Light Condensed",
+        "font-family": "K2D",
         "font-size": 288
     },
     "label": {

@@ -360,14 +360,6 @@
         "documentation": {}
     },
     {
-        "label": "FileHandler",
-        "importPath": "src.file_handler",
-        "description": "src.file_handler",
-        "isExtraImport": true,
-        "detail": "src.file_handler",
-        "documentation": {}
-    },
-    {
         "label": "Qt",
         "importPath": "PySide6.QtCore",
         "description": "PySide6.QtCore",

@@ -2,7 +2,6 @@
 
 from PySide6.QtWidgets import QMenu
 from PySide6.QtGui import QAction
-from src.file_handler import FileHandler
 
 class ContextMenuHandler:
     def __init__(self, parent):

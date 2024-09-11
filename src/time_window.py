@@ -2,10 +2,10 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QSystemTrayIcon, QMe
 from PySide6.QtGui import QDragEnterEvent, QDropEvent, QFont, QIcon, QAction, QFontDatabase, QCursor
 from PySide6.QtCore import Qt, QTime, QTimer, QEasingCurve, QPropertyAnimation
 
-from src.context_menu_handler import ContextMenuHandler
-from src.file_handler import FileHandler
-from src.background_handler import BackgroundHandler
-from src.label_position_handler import LabelPositionHandler
+from handlers.context_menu_handler import ContextMenuHandler
+from handlers.file_handler import FileHandler
+from handlers.background_handler import BackgroundHandler
+from handlers.label_position_handler import LabelPositionHandler
 
 from src.font_selector import *
 from src.font_size_slider import *

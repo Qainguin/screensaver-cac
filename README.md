@@ -18,5 +18,5 @@
 1. **Clone the Repository:**
 
    ```bash
-   git clone http:
+   git clone https://github.com/Qainguin/screensaver-cac.git
    ```

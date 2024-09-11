@@ -20,3 +20,13 @@
    ```bash
    git clone https://github.com/Qainguin/screensaver-cac.git
    ```
+2. **Install Dependencies**
+   
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Run App**
+
+   ```bash
+   python main.py
+   ```

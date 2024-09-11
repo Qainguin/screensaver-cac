@@ -27,8 +27,8 @@ class ContextMenuHandler:
         integrations_action = QAction("Integrations", self.parent)
 
         # Connect actions to slots
-        change_bg_action.triggered.connect(self.parent.change_background_color)
-        change_bg_image_action.triggered.connect(lambda: self.parent.change_background_image(""))
+        change_bg_action.triggered.connect(self.parent.background_handler.change_background_color)
+        change_bg_image_action.triggered.connect(lambda: self.parent.background_handler.change_background_image(""))
         change_font_color_action.triggered.connect(self.parent.change_font_color)
         change_font_action.triggered.connect(self.parent.show_font_selector)
         change_font_size_action.triggered.connect(self.parent.show_font_size_slider)

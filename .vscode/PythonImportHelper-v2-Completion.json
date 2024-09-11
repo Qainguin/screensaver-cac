@@ -1,5 +1,21 @@
 [
     {
+        "label": "QColorDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QFileDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QMenu",
         "importPath": "PySide6.QtWidgets",
         "description": "PySide6.QtWidgets",
@@ -510,6 +526,14 @@
         "documentation": {}
     },
     {
+        "label": "BackgroundHandler",
+        "importPath": "src.background_handler",
+        "description": "src.background_handler",
+        "isExtraImport": true,
+        "detail": "src.background_handler",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "src.font_selector",
         "description": "src.font_selector",
@@ -556,6 +580,15 @@
         "description": "src.time_window",
         "isExtraImport": true,
         "detail": "src.time_window",
+        "documentation": {}
+    },
+    {
+        "label": "BackgroundHandler",
+        "kind": 6,
+        "importPath": "src.background_handler",
+        "description": "src.background_handler",
+        "peekOfCode": "class BackgroundHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def change_background_color(self):\n        color = QColorDialog.getColor()\n        if color.isValid():\n            self.parent.setStyleSheet(f\"background: {color.name()};\")\n            self.parent.file_handler.save_styles(False)\n    def change_background_image(self, path: str = \"\"):\n        if path == \"\" or path == \"\\n\":",
+        "detail": "src.background_handler",
         "documentation": {}
     },
     {
@@ -653,7 +686,7 @@
         "kind": 6,
         "importPath": "src.time_window",
         "description": "src.time_window",
-        "peekOfCode": "class TimeWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.context_menu_handler = ContextMenuHandler(self)\n        self.file_handler = FileHandler(self)\n        # Initialize fullscreen and seconds booleans\n        self.is_fullscreen = False\n        self.show_seconds = True\n        # Set up the window\n        self.setWindowTitle(\"Screensaver\")",
+        "peekOfCode": "class TimeWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.context_menu_handler = ContextMenuHandler(self)\n        self.file_handler = FileHandler(self)\n        self.background_handler = BackgroundHandler(self)\n        # Initialize fullscreen and seconds booleans\n        self.is_fullscreen = False\n        self.show_seconds = True\n        # Set up the window",
         "detail": "src.time_window",
         "documentation": {}
     }

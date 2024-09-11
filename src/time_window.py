@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt, QTime, QTimer, QEasingCurve, QPropertyAnimation
 
 from src.context_menu_handler import ContextMenuHandler
 from src.file_handler import FileHandler
+from src.background_handler import BackgroundHandler
 
 from src.font_selector import *
 from src.font_size_slider import *
@@ -18,6 +19,7 @@ class TimeWindow(QWidget):
 
         self.context_menu_handler = ContextMenuHandler(self)
         self.file_handler = FileHandler(self)
+        self.background_handler = BackgroundHandler(self)
 
         # Initialize fullscreen and seconds booleans
         self.is_fullscreen = False
@@ -88,7 +90,7 @@ class TimeWindow(QWidget):
             for url in urls:
                 filepath = url.toLocalFile()
                 print("Dropped file: ", filepath)
-                self.change_background_image(filepath)
+                self.background_handler.change_background_image(filepath)
 
     def contextMenuEvent(self, event):
         self.context_menu_handler.contextMenuEvent(event)
@@ -117,12 +119,6 @@ class TimeWindow(QWidget):
     def keyPressEvent(self, event):
         if event.key() in {Qt.Key_F11, Qt.Key_Return, Qt.Key_Enter}:
             self.toggle_fullscreen()
-
-    def change_background_color(self):
-        color = QColorDialog.getColor()
-        if color.isValid():
-            self.setStyleSheet(f"background: {color.name()};")
-            self.file_handler.save_styles(False)
 
     def change_font_color(self):
         color = QColorDialog.getColor()
@@ -170,16 +166,6 @@ class TimeWindow(QWidget):
 
         slider.setStyleSheet("background: 1e1e1e; border-image: none;")
         slider.exec()
-
-    def change_background_image(self, path: str = ""):
-        if path == "" or path == "\n":
-            file_name, _ = QFileDialog.getOpenFileName(self, "Select Background Image", "", "Images (*.png *.jpg *.bmp)")
-        else:
-            file_name = path
-
-        if file_name:
-            self.setStyleSheet(f"border-image: url({file_name}) 0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center; margin: 0rem; padding: 0;")
-            self.file_handler.save_styles(False)
         
     def toggle_fullscreen(self):
         if self.is_fullscreen:

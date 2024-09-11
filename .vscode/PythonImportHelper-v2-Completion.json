@@ -511,34 +511,34 @@
     },
     {
         "label": "ContextMenuHandler",
-        "importPath": "handlers.context_menu_handler",
-        "description": "handlers.context_menu_handler",
+        "importPath": "src.handlers.context_menu_handler",
+        "description": "src.handlers.context_menu_handler",
         "isExtraImport": true,
-        "detail": "handlers.context_menu_handler",
+        "detail": "src.handlers.context_menu_handler",
         "documentation": {}
     },
     {
         "label": "FileHandler",
-        "importPath": "handlers.file_handler",
-        "description": "handlers.file_handler",
+        "importPath": "src.handlers.file_handler",
+        "description": "src.handlers.file_handler",
         "isExtraImport": true,
-        "detail": "handlers.file_handler",
+        "detail": "src.handlers.file_handler",
         "documentation": {}
     },
     {
         "label": "BackgroundHandler",
-        "importPath": "handlers.background_handler",
-        "description": "handlers.background_handler",
+        "importPath": "src.handlers.background_handler",
+        "description": "src.handlers.background_handler",
         "isExtraImport": true,
-        "detail": "handlers.background_handler",
+        "detail": "src.handlers.background_handler",
         "documentation": {}
     },
     {
         "label": "LabelPositionHandler",
-        "importPath": "handlers.label_position_handler",
-        "description": "handlers.label_position_handler",
+        "importPath": "src.handlers.label_position_handler",
+        "description": "src.handlers.label_position_handler",
         "isExtraImport": true,
-        "detail": "handlers.label_position_handler",
+        "detail": "src.handlers.label_position_handler",
         "documentation": {}
     },
     {
@@ -593,37 +593,37 @@
     {
         "label": "BackgroundHandler",
         "kind": 6,
-        "importPath": "handlers.background_handler",
-        "description": "handlers.background_handler",
+        "importPath": "src.handlers.background_handler",
+        "description": "src.handlers.background_handler",
         "peekOfCode": "class BackgroundHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def change_background_color(self):\n        color = QColorDialog.getColor()\n        if color.isValid():\n            self.parent.setStyleSheet(f\"background: {color.name()};\")\n            self.parent.file_handler.save_styles(False)\n    def change_background_image(self, path: str = \"\"):\n        if path == \"\" or path == \"\\n\":",
-        "detail": "handlers.background_handler",
+        "detail": "src.handlers.background_handler",
         "documentation": {}
     },
     {
         "label": "ContextMenuHandler",
         "kind": 6,
-        "importPath": "handlers.context_menu_handler",
-        "description": "handlers.context_menu_handler",
+        "importPath": "src.handlers.context_menu_handler",
+        "description": "src.handlers.context_menu_handler",
         "peekOfCode": "class ContextMenuHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def contextMenuEvent(self, event):\n        menu = QMenu(self.parent)\n        menu.setStyleSheet(\"background: #1e1e1e; color: white; border-image: none; padding: 8 0 8 0\")\n        # Create actions\n        change_bg_action = QAction(\"Change Background Color\", self.parent)\n        change_bg_image_action = QAction(\"Change Background Image\", self.parent)\n        change_font_color_action = QAction(\"Change Font Color\", self.parent)",
-        "detail": "handlers.context_menu_handler",
+        "detail": "src.handlers.context_menu_handler",
         "documentation": {}
     },
     {
         "label": "FileHandler",
         "kind": 6,
-        "importPath": "handlers.file_handler",
-        "description": "handlers.file_handler",
+        "importPath": "src.handlers.file_handler",
+        "description": "src.handlers.file_handler",
         "peekOfCode": "class FileHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def save_styles(self, picker):\n        # Create a dictionary with current styles\n        styles = {\n            \"background\": {\n                \"background-color\": self.parent.palette().color(self.parent.backgroundRole()).name(),\n                \"border-image\": self.parent.styleSheet().split(\"border-image: url(\")[-1].split(\")\")[0] if \"border-image\" in self.parent.styleSheet() else \"\"\n            },",
-        "detail": "handlers.file_handler",
+        "detail": "src.handlers.file_handler",
         "documentation": {}
     },
     {
         "label": "LabelPositionHandler",
         "kind": 6,
-        "importPath": "handlers.label_position_handler",
-        "description": "handlers.label_position_handler",
+        "importPath": "src.handlers.label_position_handler",
+        "description": "src.handlers.label_position_handler",
         "peekOfCode": "class LabelPositionHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def change_label_position(self, position: int):\n        match position:\n            case 0:\n                self.parent.time_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)\n            case 1:\n                self.parent.time_label.setAlignment(Qt.AlignTop | Qt.AlignHCenter)\n            case 2:",
-        "detail": "handlers.label_position_handler",
+        "detail": "src.handlers.label_position_handler",
         "documentation": {}
     },
     {

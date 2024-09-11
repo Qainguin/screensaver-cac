@@ -1,15 +1,15 @@
 {
     "background": {
-        "background-color": "#ff84ff",
+        "background-color": "#fffef1",
         "border-image": ""
     },
     "font": {
-        "font-color": "#ffffff",
+        "font-color": "#bb5dff",
         "font-family": "Amiri",
         "font-size": 100
     },
     "label": {
-        "label-position": 33,
-        "show-seconds": true
+        "label-position": 132,
+        "show-seconds": false
     }
 }

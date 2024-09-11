@@ -41,7 +41,7 @@ class TimeWindow(QWidget):
         # Set up the layout
         layout = QVBoxLayout()
         layout.addWidget(self.time_label)
-        layout.setContentsMargins(16, 0, 16, 0)  # (left, top, right, bottom)
+        layout.setContentsMargins(0, 0, 0, 0)  # (left, top, right, bottom)
         layout.setSpacing(0)  # Space between widgets in the layout
         self.setLayout(layout)
 

@@ -12,7 +12,7 @@ class BackgroundHandler:
     
     def change_background_image(self, path: str = ""):
         if path == "" or path == "\n":
-            file_name, _ = QFileDialog.getOpenFileName(self, "Select Background Image", "", "Images (*.png *.jpg *.bmp)")
+            file_name, _ = QFileDialog.getOpenFileName(None, "Select Background Image", "", "Images (*.png *.jpg *.bmp)")
         else:
             file_name = path
 

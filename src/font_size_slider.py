@@ -7,7 +7,7 @@ class FontSizeSlider(QDialog):
 
         self.setWindowTitle("Choose Font Size")
         self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size
-        self.setStyleSheet("border-image: none; background: #1e1e1e;")
+        self.setStyleSheet("border-image: none; background: #1e1e1e; color: white;")
 
         self.slider = QSlider(Qt.Horizontal, self)
         self.slider.setMinimum(72)

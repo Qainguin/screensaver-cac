@@ -70,7 +70,7 @@ class FileHandler:
 
         if "border-image" in styles["background"]:
             if styles['background']['border-image'] != "":
-                self.parent.change_background_image(styles['background']['border-image'])
+                self.parent.background_handler.change_background_image(styles['background']['border-image'])
         
         # Apply font settings separately
         if "font" in styles:

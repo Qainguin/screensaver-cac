@@ -7,7 +7,7 @@ class PositionChanger(QDialog):
 
         self.setWindowTitle("Change Label Position")
         self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size
-        self.setStyleSheet("border-image: none; background: #1e1e1e;")
+        self.setStyleSheet("border-image: none; background: #1e1e1e; color: white;")
 
         layout = QGridLayout()
 

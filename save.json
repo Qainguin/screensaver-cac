@@ -4,12 +4,12 @@
         "border-image": ""
     },
     "font": {
-        "font-color": "#bb5dff",
-        "font-family": "Amiri",
-        "font-size": 100
+        "font-color": "#ff00e3",
+        "font-family": "Alegreya Sans",
+        "font-size": 288
     },
     "label": {
         "label-position": 132,
-        "show-seconds": false
+        "show-seconds": true
     }
 }

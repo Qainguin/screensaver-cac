@@ -16,7 +16,7 @@ class FontSizeSlider(QDialog):
         self.slider.setTickPosition(QSlider.TicksBelow)
         self.slider.setValue(value)
         self.slider.setTracking(True)
-        self.slider.valueChanged.connect(parent.change_font_size)
+        self.slider.valueChanged.connect(parent.font_handler.change_font_size)
 
         layout = QVBoxLayout()
         layout.addWidget(self.slider)

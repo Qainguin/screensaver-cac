@@ -6,6 +6,7 @@ from src.handlers.context_menu_handler import ContextMenuHandler
 from src.handlers.file_handler import FileHandler
 from src.handlers.background_handler import BackgroundHandler
 from src.handlers.label_position_handler import LabelPositionHandler
+from src.handlers.font_handler import FontHandler
 
 from src.font_selector import *
 from src.font_size_slider import *
@@ -22,6 +23,7 @@ class TimeWindow(QWidget):
         self.file_handler = FileHandler(self)
         self.background_handler = BackgroundHandler(self)
         self.label_position_handler = LabelPositionHandler(self)
+        self.font_handler = FontHandler(self)
 
         # Initialize fullscreen and seconds booleans
         self.is_fullscreen = False
@@ -122,12 +124,6 @@ class TimeWindow(QWidget):
         if event.key() in {Qt.Key_F11, Qt.Key_Return, Qt.Key_Enter}:
             self.toggle_fullscreen()
 
-    def change_font_color(self):
-        color = QColorDialog.getColor()
-        if color.isValid():
-            self.time_label.setStyleSheet(f"color: {color.name()};")
-            self.file_handler.save_styles(False)
-
     def show_label_position_changer(self):
         changer = PositionChanger(self)
 
@@ -146,10 +142,9 @@ class TimeWindow(QWidget):
 
         integ.exec()
 
-
     def show_font_selector(self):
         fonts = sorted(set(QFontDatabase.families()))
-        font_selector = FontSelector(self, fonts, self.change_font)
+        font_selector = FontSelector(self, fonts, self.font_handler.change_font)
 
         app = QApplication.instance()
         size = app.primaryScreen().size()
@@ -179,16 +174,4 @@ class TimeWindow(QWidget):
     def toggle_show_seconds(self, val: bool):
         self.show_seconds = not self.show_seconds
         self.update_time()
-        self.file_handler.save_styles(False)
-
-    def change_font(self, font_name):
-        current_font = self.time_label.font()
-        new_font = QFont(font_name, current_font.pointSize())
-        self.time_label.setFont(new_font)
-        self.file_handler.save_styles(False)
-    
-    def change_font_size(self, font_size):
-        current_font = self.time_label.font()
-        new_font = QFont(current_font.family(), font_size)
-        self.time_label.setFont(new_font)
         self.file_handler.save_styles(False)

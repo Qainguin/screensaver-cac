@@ -30,3 +30,13 @@
    ```bash
    python main.py
    ```
+
+## Usage
+
+- **System Tray Icon**
+  - **Show Window**: Restore or maximize the application window.
+  - **Quit**: Close the application.
+- **Drag & Drop Background Image**
+  - Drag and drop any image file onto the **Screensaver** window to change the background.
+- **Keyboard Shortcuts**
+  - **F11 / Enter / Return**: Toggle fullscreen mode.

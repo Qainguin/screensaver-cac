@@ -1,5 +1,21 @@
 [
     {
+        "label": "QMenu",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QFileDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QDialog",
         "importPath": "PySide6.QtWidgets",
         "description": "PySide6.QtWidgets",
@@ -248,6 +264,22 @@
         "documentation": {}
     },
     {
+        "label": "QAction",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QFont",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
         "label": "QFont",
         "importPath": "PySide6.QtGui",
         "description": "PySide6.QtGui",
@@ -309,6 +341,30 @@
         "description": "PySide6.QtGui",
         "isExtraImport": true,
         "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "FileHandler",
+        "importPath": "src.file_handler",
+        "description": "src.file_handler",
+        "isExtraImport": true,
+        "detail": "src.file_handler",
+        "documentation": {}
+    },
+    {
+        "label": "FileHandler",
+        "importPath": "src.file_handler",
+        "description": "src.file_handler",
+        "isExtraImport": true,
+        "detail": "src.file_handler",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
         "documentation": {}
     },
     {
@@ -446,6 +502,14 @@
         "documentation": {}
     },
     {
+        "label": "ContextMenuHandler",
+        "importPath": "src.context_menu_handler",
+        "description": "src.context_menu_handler",
+        "isExtraImport": true,
+        "detail": "src.context_menu_handler",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "src.font_selector",
         "description": "src.font_selector",
@@ -492,6 +556,24 @@
         "description": "src.time_window",
         "isExtraImport": true,
         "detail": "src.time_window",
+        "documentation": {}
+    },
+    {
+        "label": "ContextMenuHandler",
+        "kind": 6,
+        "importPath": "src.context_menu_handler",
+        "description": "src.context_menu_handler",
+        "peekOfCode": "class ContextMenuHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def contextMenuEvent(self, event):\n        menu = QMenu(self.parent)\n        menu.setStyleSheet(\"background: #1e1e1e; color: white; border-image: none; padding: 8 0 8 0\")\n        # Create actions\n        change_bg_action = QAction(\"Change Background Color\", self.parent)\n        change_bg_image_action = QAction(\"Change Background Image\", self.parent)\n        change_font_color_action = QAction(\"Change Font Color\", self.parent)",
+        "detail": "src.context_menu_handler",
+        "documentation": {}
+    },
+    {
+        "label": "FileHandler",
+        "kind": 6,
+        "importPath": "src.file_handler",
+        "description": "src.file_handler",
+        "peekOfCode": "class FileHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def save_styles(self, picker):\n        # Create a dictionary with current styles\n        styles = {\n            \"background\": {\n                \"background-color\": self.parent.palette().color(self.parent.backgroundRole()).name(),\n                \"border-image\": self.parent.styleSheet().split(\"border-image: url(\")[-1].split(\")\")[0] if \"border-image\" in self.parent.styleSheet() else \"\"\n            },",
+        "detail": "src.file_handler",
         "documentation": {}
     },
     {
@@ -571,7 +653,7 @@
         "kind": 6,
         "importPath": "src.time_window",
         "description": "src.time_window",
-        "peekOfCode": "class TimeWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.is_fullscreen = False\n        self.show_seconds = True\n        # Set up the window\n        self.setWindowTitle(\"Screensaver\")\n        self.resize(400, 300)\n        # Create and configure the time label\n        self.time_label = QLabel()",
+        "peekOfCode": "class TimeWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.context_menu_handler = ContextMenuHandler(self)\n        self.file_handler = FileHandler(self)\n        # Initialize fullscreen and seconds booleans\n        self.is_fullscreen = False\n        self.show_seconds = True\n        # Set up the window\n        self.setWindowTitle(\"Screensaver\")",
         "detail": "src.time_window",
         "documentation": {}
     }

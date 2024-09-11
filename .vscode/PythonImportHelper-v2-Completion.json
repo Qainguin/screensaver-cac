@@ -424,6 +424,14 @@
         "documentation": {}
     },
     {
+        "label": "Qt",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
         "label": "QTime",
         "importPath": "PySide6.QtCore",
         "description": "PySide6.QtCore",
@@ -534,6 +542,14 @@
         "documentation": {}
     },
     {
+        "label": "LabelPositionHandler",
+        "importPath": "src.label_position_handler",
+        "description": "src.label_position_handler",
+        "isExtraImport": true,
+        "detail": "src.label_position_handler",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "src.font_selector",
         "description": "src.font_selector",
@@ -637,6 +653,15 @@
         "documentation": {}
     },
     {
+        "label": "LabelPositionHandler",
+        "kind": 6,
+        "importPath": "src.label_position_handler",
+        "description": "src.label_position_handler",
+        "peekOfCode": "class LabelPositionHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def change_label_position(self, position: int):\n        match position:\n            case 0:\n                self.parent.time_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)\n            case 1:\n                self.parent.time_label.setAlignment(Qt.AlignTop | Qt.AlignHCenter)\n            case 2:",
+        "detail": "src.label_position_handler",
+        "documentation": {}
+    },
+    {
         "label": "PositionChanger",
         "kind": 6,
         "importPath": "src.position_changer",
@@ -686,7 +711,7 @@
         "kind": 6,
         "importPath": "src.time_window",
         "description": "src.time_window",
-        "peekOfCode": "class TimeWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.context_menu_handler = ContextMenuHandler(self)\n        self.file_handler = FileHandler(self)\n        self.background_handler = BackgroundHandler(self)\n        # Initialize fullscreen and seconds booleans\n        self.is_fullscreen = False\n        self.show_seconds = True\n        # Set up the window",
+        "peekOfCode": "class TimeWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.context_menu_handler = ContextMenuHandler(self)\n        self.file_handler = FileHandler(self)\n        self.background_handler = BackgroundHandler(self)\n        self.label_position_handler = LabelPositionHandler(self)\n        # Initialize fullscreen and seconds booleans\n        self.is_fullscreen = False\n        self.show_seconds = True",
         "detail": "src.time_window",
         "documentation": {}
     }

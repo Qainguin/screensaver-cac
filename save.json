@@ -9,20 +9,34 @@
         "font-size": 100
     },
     "label": {
-        "label-position": 33,
+        "label-position": 132,
         "show-seconds": true
     },
     "widgets": {
         "stickies": [
             {
-                "x": 383,
-                "y": 321,
-                "text": "help"
+                "x": 148,
+                "y": 489,
+                "bg_color": "hsl(25, 100%, 94%)",
+                "text": "hi"
             },
             {
-                "x": 620,
-                "y": 346,
-                "text": "lol"
+                "x": 407,
+                "y": 105,
+                "bg_color": "hsl(20, 100%, 94%)",
+                "text": "how"
+            },
+            {
+                "x": 1086,
+                "y": 422,
+                "bg_color": "hsl(65, 100%, 94%)",
+                "text": "you?"
+            },
+            {
+                "x": 777,
+                "y": 133,
+                "bg_color": "hsl(145, 100%, 94%)",
+                "text": "are"
             }
         ]
     }

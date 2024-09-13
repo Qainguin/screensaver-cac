@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QTextEdit, QPushButton
 from PySide6.QtCore import Qt, QPoint, QSize
-import sys, json
+import sys, json, random
 
 class StickyNoteWidget(QWidget):
     def __init__(self, parent=None):
@@ -9,7 +9,9 @@ class StickyNoteWidget(QWidget):
 
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)
         self.setFixedSize(200, 200)
-        self.setStyleSheet("background-color: lightyellow; color: black; border: none;")
+
+        self.bg_color = "hsl(" + str(random.randrange(0, 255)) + ", 100%, 94%" + ")"
+        self.setStyleSheet(f"background-color: { self.bg_color }; color: black; border: none;")
         
         # Create a layout and add a text edit and close button
         layout = QVBoxLayout()
@@ -72,6 +74,7 @@ class StickyNoteWidget(QWidget):
         return {
             'x': self.x(),
             'y': self.y(),
+            'bg_color': self.bg_color,
             'text': self.text_edit.toPlainText()
         }
 
@@ -80,6 +83,9 @@ class StickyNoteWidget(QWidget):
         data = sticky_dict
     
         self.move(data.get('x', 0), data.get('y', 0))
+
+        self.bg_color = data.get('bg_color', 0)
+        self.setStyleSheet(f"background-color: { self.bg_color }; color: black; border: none;")
         
         self.text_edit.setPlainText(data.get('text', ''))
 

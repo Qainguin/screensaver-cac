@@ -833,7 +833,7 @@
         "kind": 6,
         "importPath": "src.sticky_note",
         "description": "src.sticky_note",
-        "peekOfCode": "class StickyNoteWidget(QWidget):\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.parent = parent\n        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)\n        self.setFixedSize(200, 200)\n        self.setStyleSheet(\"background-color: lightyellow; color: black; border: none;\")\n        # Create a layout and add a text edit and close button\n        layout = QVBoxLayout()\n        layout.setContentsMargins(16,16,16,16)",
+        "peekOfCode": "class StickyNoteWidget(QWidget):\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.parent = parent\n        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)\n        self.setFixedSize(200, 200)\n        self.bg_color = \"hsl(\" + str(random.randrange(0, 255)) + \", 100%, 94%\" + \")\"\n        self.setStyleSheet(f\"background-color: { self.bg_color }; color: black; border: none;\")\n        # Create a layout and add a text edit and close button\n        layout = QVBoxLayout()",
         "detail": "src.sticky_note",
         "documentation": {}
     },

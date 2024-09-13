@@ -1,15 +1,29 @@
 {
     "background": {
-        "background-color": "#f3f3f3",
+        "background-color": "#323232",
         "border-image": "D:/vcs profile/Downloads/minecraft-steve-armor-2ry2l4ajl5i5ltju.jpg"
     },
     "font": {
-        "font-color": "#000000",
+        "font-color": "#ffffff",
         "font-family": "Bahnschrift SemiLight Condensed",
         "font-size": 100
     },
     "label": {
         "label-position": 33,
         "show-seconds": true
+    },
+    "widgets": {
+        "stickies": [
+            {
+                "x": 383,
+                "y": 321,
+                "text": "help"
+            },
+            {
+                "x": 620,
+                "y": 346,
+                "text": "lol"
+            }
+        ]
     }
 }

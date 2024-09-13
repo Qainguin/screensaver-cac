@@ -208,6 +208,54 @@
         "documentation": {}
     },
     {
+        "label": "QApplication",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMainWindow",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QTextEdit",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QWidget",
         "importPath": "PySide6.QtWidgets",
         "description": "PySide6.QtWidgets",
@@ -432,6 +480,30 @@
         "documentation": {}
     },
     {
+        "label": "QPoint",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QSize",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
         "label": "QTime",
         "importPath": "PySide6.QtCore",
         "description": "PySide6.QtCore",
@@ -461,6 +533,22 @@
         "description": "PySide6.QtCore",
         "isExtraImport": true,
         "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "src.sticky_note",
+        "description": "src.sticky_note",
+        "isExtraImport": true,
+        "detail": "src.sticky_note",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "src.sticky_note",
+        "description": "src.sticky_note",
+        "isExtraImport": true,
+        "detail": "src.sticky_note",
         "documentation": {}
     },
     {
@@ -523,6 +611,15 @@
         "importPath": "os",
         "description": "os",
         "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "sys,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys.",
+        "description": "sys.",
+        "detail": "sys.",
         "documentation": {}
     },
     {
@@ -637,7 +734,7 @@
         "kind": 6,
         "importPath": "src.handlers.file_handler",
         "description": "src.handlers.file_handler",
-        "peekOfCode": "class FileHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def save_styles(self, picker):\n        # Create a dictionary with current styles\n        styles = {\n            \"background\": {\n                \"background-color\": self.parent.palette().color(self.parent.backgroundRole()).name(),\n                \"border-image\": self.parent.styleSheet().split(\"border-image: url(\")[-1].split(\")\")[0] if \"border-image\" in self.parent.styleSheet() else \"\"\n            },",
+        "peekOfCode": "class FileHandler:\n    def __init__(self, parent):\n        self.parent = parent\n    def save_styles(self, picker):\n        sticky_json_list = []\n        for s in self.parent.sticky_notes:\n            sticky_json_list.append(s.to_dict())\n        # Create a dictionary with current styles\n        styles = {\n            \"background\": {",
         "detail": "src.handlers.file_handler",
         "documentation": {}
     },
@@ -673,7 +770,7 @@
         "kind": 6,
         "importPath": "src.font_size_slider",
         "description": "src.font_size_slider",
-        "peekOfCode": "class FontSizeSlider(QDialog):\n    def __init__(self, parent, value):\n        super().__init__(parent)\n        self.setWindowTitle(\"Choose Font Size\")\n        self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size\n        self.setStyleSheet(\"border-image: none; background: #1e1e1e;\")\n        self.slider = QSlider(Qt.Horizontal, self)\n        self.slider.setMinimum(72)\n        self.slider.setMaximum(288)\n        self.slider.setTickInterval(8)",
+        "peekOfCode": "class FontSizeSlider(QDialog):\n    def __init__(self, parent, value):\n        super().__init__(parent)\n        self.setWindowTitle(\"Choose Font Size\")\n        self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size\n        self.setStyleSheet(\"border-image: none; background: #1e1e1e; color: white;\")\n        self.slider = QSlider(Qt.Horizontal, self)\n        self.slider.setMinimum(72)\n        self.slider.setMaximum(288)\n        self.slider.setTickInterval(8)",
         "detail": "src.font_size_slider",
         "documentation": {}
     },
@@ -691,7 +788,7 @@
         "kind": 6,
         "importPath": "src.position_changer",
         "description": "src.position_changer",
-        "peekOfCode": "class PositionChanger(QDialog):\n    def __init__(self, parent):\n        super().__init__(parent)\n        self.setWindowTitle(\"Change Label Position\")\n        self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size\n        self.setStyleSheet(\"border-image: none; background: #1e1e1e;\")\n        layout = QGridLayout()\n        self.topLeftButton = QPushButton(\"Top-Left\")\n        self.topLeftButton.setMinimumHeight(100)\n        self.topLeftButton.setMinimumWidth(100)",
+        "peekOfCode": "class PositionChanger(QDialog):\n    def __init__(self, parent):\n        super().__init__(parent)\n        self.setWindowTitle(\"Change Label Position\")\n        self.setGeometry(100, 100, 300, 50)  # Ensure the window is visible with appropriate size\n        self.setStyleSheet(\"border-image: none; background: #1e1e1e; color: white;\")\n        layout = QGridLayout()\n        self.topLeftButton = QPushButton(\"Top-Left\")\n        self.topLeftButton.setMinimumHeight(100)\n        self.topLeftButton.setMinimumWidth(100)",
         "detail": "src.position_changer",
         "documentation": {}
     },
@@ -729,6 +826,15 @@
         "description": "src.spotify_integration",
         "peekOfCode": "username = \"\"\nload_dotenv()\ndef spotify_authentication(user: str):\n    global token\n    global username\n    if user != \"\":\n        print(\"Username:\", user)\n        username = user\n        scope = 'user-library-read streaming user-read-playback-state'\n        token = util.prompt_for_user_token(username, scope, os.getenv(\"SPOTIPY_CLIENT_ID\"), os.getenv(\"SPOTIPY_CLIENT_SECRET\"), os.getenv(\"SPOTIPY_REDIRECT_URI\"))",
         "detail": "src.spotify_integration",
+        "documentation": {}
+    },
+    {
+        "label": "StickyNoteWidget",
+        "kind": 6,
+        "importPath": "src.sticky_note",
+        "description": "src.sticky_note",
+        "peekOfCode": "class StickyNoteWidget(QWidget):\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.parent = parent\n        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)\n        self.setFixedSize(200, 200)\n        self.setStyleSheet(\"background-color: lightyellow; color: black; border: none;\")\n        # Create a layout and add a text edit and close button\n        layout = QVBoxLayout()\n        layout.setContentsMargins(16,16,16,16)",
+        "detail": "src.sticky_note",
         "documentation": {}
     },
     {

@@ -8,6 +8,7 @@ from src.handlers.background_handler import BackgroundHandler
 from src.handlers.label_position_handler import LabelPositionHandler
 from src.handlers.font_handler import FontHandler
 
+from src.sticky_note import *
 from src.font_selector import *
 from src.font_size_slider import *
 from src.integrations_window import *
@@ -39,11 +40,11 @@ class TimeWindow(QWidget):
         self.time_label.setFont(QFont("Bahnschrift SemiLight Condensed", 100))
 
         # Set up the layout
-        layout = QVBoxLayout()
-        layout.addWidget(self.time_label)
-        layout.setContentsMargins(0, 0, 0, 0)  # (left, top, right, bottom)
-        layout.setSpacing(0)  # Space between widgets in the layout
-        self.setLayout(layout)
+        self.layout = QVBoxLayout()
+        self.layout.addWidget(self.time_label)
+        self.layout.setContentsMargins(0, 0, 0, 0)  # (left, top, right, bottom)
+        self.layout.setSpacing(0)  # Space between widgets in the layout
+        self.setLayout(self.layout)
 
         # Set up the timer to update the time label every second
         self.timer = QTimer()
@@ -53,8 +54,14 @@ class TimeWindow(QWidget):
         # Initialize the time label
         self.update_time()
 
+        # Initialize sticky notes
+        self.sticky_notes = []
+
         # Load styles if they exist
         self.file_handler.load_styles(False)
+
+        # Save styles (prevent unloading)
+        self.file_handler.save_styles(False)
 
         # Initialize system tray icon
         self.tray_icon = QSystemTrayIcon(self)
@@ -123,6 +130,11 @@ class TimeWindow(QWidget):
     def keyPressEvent(self, event):
         if event.key() in {Qt.Key_F11, Qt.Key_Return, Qt.Key_Enter}:
             self.toggle_fullscreen()
+
+    def add_sticky_note(self):
+        self.sticky_notes.append(StickyNoteWidget(self))
+        self.layout.addWidget(self.sticky_notes[-1])
+        self.sticky_notes[-1].show()
 
     def show_label_position_changer(self):
         changer = PositionChanger(self)

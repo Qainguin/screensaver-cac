@@ -2,6 +2,8 @@ from PySide6.QtWidgets import QFileDialog
 from PySide6.QtGui import QFont
 from PySide6.QtCore import Qt
 
+from src.sticky_note import *
+
 import json
 
 class FileHandler:
@@ -9,6 +11,10 @@ class FileHandler:
         self.parent = parent
 
     def save_styles(self, picker):
+        sticky_json_list = []
+        for s in self.parent.sticky_notes:
+            sticky_json_list.append(s.to_dict())
+
         # Create a dictionary with current styles
         styles = {
             "background": {
@@ -23,6 +29,9 @@ class FileHandler:
             "label": {
                 "label-position": self.parent.time_label.alignment(),
                 "show-seconds": self.parent.show_seconds
+            },
+            "widgets": {
+                "stickies": sticky_json_list
             }
         }
 
@@ -108,3 +117,13 @@ class FileHandler:
             if "show-seconds" in styles['label']:
                 self.show_seconds = styles['label']['show-seconds']
                 self.parent.update_time()
+        if 'widgets' in styles:
+            if 'stickies' in styles['widgets']:
+                for s in styles['widgets']['stickies']:
+                    sticky = StickyNoteWidget(self.parent)
+                    sticky.from_dict(s)
+                    self.parent.layout.addWidget(sticky)
+                    sticky.show()
+
+                    self.parent.sticky_notes.append(sticky)
+                    print("added sticky")

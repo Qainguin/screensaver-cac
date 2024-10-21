@@ -14,6 +14,8 @@ from src.font_size_slider import *
 from src.integrations_window import *
 from src.position_changer import *
 
+from idleTime import idle
+
 import platform, json, sys, spotipy
 
 class TimeWindow(QWidget):
@@ -107,6 +109,11 @@ class TimeWindow(QWidget):
         self.context_menu_handler.contextMenuEvent(event)
 
     def update_time(self):
+        print("idle: " + str(idle.get_idle_duration()))
+        if idle.get_idle_duration() > 300:
+            if not self.is_fullscreen:
+                self.showFullScreen()
+            
         time_format = "HH:mm:ss"
         if not self.show_seconds:
             time_format = "HH:mm"

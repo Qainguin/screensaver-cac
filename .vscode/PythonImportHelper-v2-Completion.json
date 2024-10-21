@@ -695,6 +695,14 @@
         "documentation": {}
     },
     {
+        "label": "idle",
+        "importPath": "idleTime",
+        "description": "idleTime",
+        "isExtraImport": true,
+        "detail": "idleTime",
+        "documentation": {}
+    },
+    {
         "label": "platform,",
         "kind": 6,
         "isExtraImport": true,
